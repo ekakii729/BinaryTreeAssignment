@@ -87,9 +87,9 @@ public class BinaryTree {
 
     public Node getNode(Node node, String item) {
         if (node == null || node.item.equals(item)) return node;
-        Node left = getNode(node.left, item);
-        Node right = getNode(node.right, item);
-        return (left != null) ? left : right;
+        Node left = getNode(node.left, item); // the left side of the tree
+        Node right = getNode(node.right, item); // the right side of the tree
+        return left == null ? right : left;
     }
 
     /** Method Name: display
@@ -106,7 +106,7 @@ public class BinaryTree {
     public void display(Node node) {
         if (node == null) return;
         display(node.left);
-        System.out.printf("%-20s%s%n", node.item, node.numberOfTimesFound);
+        System.out.printf("%-20s%s%n", node.item, node.numberOfTimesFound); // stackoverflow.com/questions/6000810/printing-with-t-tabs-does-not-result-in-aligned-columns
         display(node.right);
     }
 
@@ -123,8 +123,8 @@ public class BinaryTree {
 
     public int getNumberOfWords(Node node) {
         if (node == null) return 0;
-        int leftCount = getNumberOfWords(node.left);
-        int rightCount = getNumberOfWords(node.right);
+        int leftCount = getNumberOfWords(node.left); // the left side of the tree
+        int rightCount = getNumberOfWords(node.right); // the right side of the tree
         return node.numberOfTimesFound + leftCount + rightCount;
     }
 

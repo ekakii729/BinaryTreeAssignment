@@ -10,10 +10,10 @@ public class BinaryTree {
 
     public static class Node {
 
-        String item; // the content of the node
-        Node left; // the left branching node
-        Node right; // the right branching node
-        int numberOfTimesFound; // the number of times the item is found
+        public String item; // the content of the node
+        public Node left; // the left branching node
+        public Node right; // the right branching node
+        public int numberOfTimesFound; // the number of times the item is found
 
         public Node(String item) {
             this.item = item;
@@ -22,8 +22,6 @@ public class BinaryTree {
             numberOfTimesFound = 1;
         }
     }
-
-    public BinaryTree() {}
 
     /** Method Name: insert
      * @Author Abhay Manoj

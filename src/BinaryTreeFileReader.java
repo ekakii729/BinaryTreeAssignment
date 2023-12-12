@@ -7,7 +7,7 @@
 import java.io.*;
 import java.util.Scanner;
 
-public class Main {
+public class BinaryTreeFileReader {
 
     /** Method Name: readFileToTree
      * @Author Abhay Manoj

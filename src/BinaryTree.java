@@ -1,15 +1,29 @@
+/*
+ * Author: Abhay Manoj
+ * Purpose: A binary tree class
+ * Date of Creation: December 12, 2023
+ */
+
 public class BinaryTree {
 
     private Node root; // the root of the binary tree
 
-    private static class Node {
+    public static class Node {
 
         String item; // the content of the node
         Node left; // the left branching node
         Node right; // the right branching node
+        int numberOfTimesFound; // the number of times the item is found
 
-        public Node(String item) { this.item = item; }
+        public Node(String item) {
+            this.item = item;
+            this.left = null;
+            this.right = null;
+            numberOfTimesFound = 1;
+        }
     }
+
+    public BinaryTree() {}
 
     /** Method Name: insert
      * @Author Abhay Manoj
@@ -60,6 +74,24 @@ public class BinaryTree {
         else return contains(node.right, item);
     }
 
+    /** Method Name: getNode
+     * @Author Abhay Manoj
+     * @Date December 11, 2023
+     * @Modified December 11, 2023
+     * @Description Returns the node with a specific item
+     * @Parameters node - current node being looked at, item - string to find
+     * @Returns The node with the wanted string, Data Type: Node
+     * Dependencies: N/A
+     * Throws/Exceptions: N/A
+     */
+
+    public Node getNode(Node node, String item) {
+        if (node == null || node.item.equals(item)) return node;
+        Node left = getNode(node.left, item);
+        Node right = getNode(node.right, item);
+        return (left != null) ? left : right;
+    }
+
     /** Method Name: display
      * @Author Abhay Manoj
      * @Date December 11, 2023
@@ -74,27 +106,27 @@ public class BinaryTree {
     public void display(Node node) {
         if (node == null) return;
         display(node.left);
-        System.out.println(node.item);
+        System.out.printf("%-20s%s%n", node.item, node.numberOfTimesFound);
         display(node.right);
     }
 
-    /** Method Name: getItemCount
+    /** Method Name: getNumberOfWords
      * @Author Abhay Manoj
      * @Date December 11, 2023
      * @Modified December 11, 2023
-     * @Description Gets number of items in the tree
+     * @Description Gets number of words in the tree
      * @Parameters node - the current node being accessed
-     * @Returns number of items in the tree, Data Type: Integer
+     * @Returns number of words in the tree, Data Type: Integer
      * Dependencies: N/A
      * Throws/Exceptions: N/A
      */
 
-    public int getItemCount(Node node) {
+    public int getNumberOfWords(Node node) {
         if (node == null) return 0;
-        int leftCount = getItemCount(node.left); // the count of nodes on left subtree
-        int rightCount = getItemCount(node.right); // the count of nodes on right subtree
-        return 1 + leftCount + rightCount;
+        int leftCount = getNumberOfWords(node.left);
+        int rightCount = getNumberOfWords(node.right);
+        return node.numberOfTimesFound + leftCount + rightCount;
     }
 
-    private Node getRoot() { return root; }
+    public Node getRoot() { return root; }
 }
